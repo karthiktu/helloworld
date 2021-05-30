@@ -4,7 +4,6 @@ pipeline {
     tools {
         maven "maven"
     }
-
     stages {
         stage('Build') {
             steps {
