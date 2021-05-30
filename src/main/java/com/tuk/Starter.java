@@ -10,7 +10,7 @@ public class Starter {
 
     @RequestMapping("/")
     String home() {
-        return "Hello World - v3!";
+        return "Hello World - v4!";
     }
 
     public static void main(String[] args) throws Exception {
