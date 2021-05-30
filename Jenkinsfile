@@ -25,5 +25,20 @@ pipeline {
                 }
             }
         }
+        stage('SonarCloud') {
+              environment {
+                SCANNER_HOME = tool 'SonarQubeScanner'
+                ORGANIZATION = "helloworld"
+                PROJECT_NAME = "helloworld"
+              }
+              steps {
+                withSonarQubeEnv('SonarCloudOne') {
+                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
+                    -Dsonar.java.binaries=build/classes/java/ \
+                    -Dsonar.projectKey=$PROJECT_NAME \
+                    -Dsonar.sources=.'''
+                }
+  }
+}
     }
 }
