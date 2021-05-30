@@ -25,20 +25,10 @@ pipeline {
                 }
             }
         }
-        stage('SonarCloud') {
-              environment {
-                SCANNER_HOME = tool 'sonar_scanner'
-                ORGANIZATION = "helloworld"
-                PROJECT_NAME = "helloworld"
-              }
-              steps {
-                withSonarQubeEnv('sonar_scanner') {
-                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
-                    -Dsonar.java.binaries=build/classes/java/ \
-                    -Dsonar.projectKey=$PROJECT_NAME \
-                    -Dsonar.sources=.'''
-                }
-  }
-}
+        stage('Sonar Analysis') {
+            WithSonarQubeEnv('sonar_scanner'){
+                sh 'mvn clean package sonar:sonar'
+            }
+        }
     }
 }
