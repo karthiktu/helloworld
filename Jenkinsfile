@@ -27,7 +27,7 @@ pipeline {
         }
         stage('SonarCloud') {
               environment {
-                SCANNER_HOME = tool 'SonarQubeScanner'
+                SCANNER_HOME = tool 'SonarQube'
                 ORGANIZATION = "helloworld"
                 PROJECT_NAME = "helloworld"
               }
